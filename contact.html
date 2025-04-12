@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Связь с нами</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background: white; /* Добавлено для контраста */
+        }
+        .btn {
+            width: 200px;
+            padding: 15px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            transition: opacity 0.3s;
+        }
+        .btn:hover {
+            opacity: 0.8;
+        }
+        #viber { background-color: #7360F2; }
+        #whatsapp { background-color: #25D366; }
+        #telegram { background-color: #0088CC; }
+        #gmail { background-color: #EA4335; }
+    </style>
+</head>
+<body>
+    <h2>Выберите способ связи:</h2>
+    
+    <button class="btn" id="viber" onclick="openApp('viber')">Viber</button>
+    <button class="btn" id="whatsapp" onclick="openApp('whatsapp')">WhatsApp</button>
+    <button class="btn" id="telegram" onclick="openApp('telegram')">Telegram</button>
+    <button class="btn" id="gmail" onclick="openApp('gmail')">Gmail</button>
+
+    <script>
+        const contacts = {
+            viber: {
+                app: 'viber://chat?number=+37360606601',
+                web: 'https://www.viber.com/download/'
+            },
+            whatsapp: {
+                app: 'https://wa.me/+37360606601',
+                web: 'https://web.whatsapp.com/send?phone=37360606601'
+            },
+            telegram: {
+                app: 'tg://resolve?domain=magicton15',
+                web: 'https://t.me/magicton15'
+            },
+            gmail: {
+                app: 'mailto:imprimare01@gmail.com',
+                web: 'https://mail.google.com/mail/?view=cm&to=imprimare01@gmail.com'
+            }
+        };
+
+        function openApp(service) {
+            const link = contacts[service];
+            const appWindow = window.open(link.app, '_blank');
+            
+            if (navigator.userAgent.match(/Mobile/)) {
+                setTimeout(() => {
+                    if (!appWindow || appWindow.closed) {
+                        window.location.href = link.web;
+                    }
+                }, 500);
+            } else {
+                window.location.href = link.web;
+            }
+        }
+    </script>
+</body>
+</html>
